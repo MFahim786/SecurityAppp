@@ -2,104 +2,103 @@ import {View, Text, TouchableOpacity,
    Image, 
    FlatList,
   } from 'react-native';
+import { responsiveFontSize, responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import React from 'react';
 import ScreenWrapper from '../components/ScreenWrapper';
-import {colors} from '../theme';
-import randomImage from '../assets/randomImage';
-import EmptyList from '../components/emptylist';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-const items = [
-  {
-    id: 1,
-    place: 'Gujrat',
-    country: 'Pakistan',
-  },
-  {
-    id: 2,
-    place: 'London Eye',
-    country: 'England',
-  },
-  {
-    id: 3,
-    place: 'Washington dc',
-    country: 'America',
-  },
-  {
-    id: 4,
-    place: 'New york',
-    country: 'America',
-  },
-  {
-    id: 2,
-    place: 'London Eye',
-    country: 'England',
-  },
-  {
-    id: 3,
-    place: 'Washington dc',
-    country: 'America',
-  },
-  {
-    id: 4,
-    place: 'New york',
-    country: 'America',
-  },
-];
+import { useNavigation } from '@react-navigation/native';
 export default function HomeScreen() {
   const navigation=useNavigation();
   return (
     // {/*main menu*/}
-    <ScreenWrapper className="flex-1 ">
-      <View className="flex-row justify-between items-center p-4">
-        <Text className={`${colors.heading}  font-bold text-3xl shadow-sm`}>
-          Expensify
-        </Text>
-        <TouchableOpacity className="p-2 bg-white border border-gray-200 rounded-full ">
-          <Text className={`${colors.heading}`}>Logout</Text>
-        </TouchableOpacity>
-      </View>
+    <ScreenWrapper className="flex-1 bg-orange-500">
+      <View className="justify-center items-center bg-orange-500" >
+            <View className="pt-20">
+                <Image source={require('../assets/Logo.png')} />
+            </View>
+            <View style={{
+                backgroundColor: 'white',
+                width: responsiveWidth(100),
+                height: responsiveHeight(90),
+                borderTopLeftRadius: responsiveWidth(10),
+                borderTopRightRadius: responsiveWidth(10)
+            }} className="mt-10">
 
-      <View className="flex-row justify-center bg-blue-200 rounded-xl mx-4 mb-4">
-        <Image
-          source={require('../assets/banner.png')}
-          className="w-60 h-60"></Image>
-      </View>
+                <Image source={require('../assets/fr.png')}
+                    style={{
+                        marginTop: 80,
+                        marginLeft: 150,
+                        alignItems: 'center'
+                    }} className="justify-center" />
+                <View>
+                    <TouchableOpacity style={{
+                        width: responsiveWidth(50),
+                        height: responsiveHeight(8),
+                        marginTop: responsiveHeight(12),
+                        marginLeft: responsiveWidth(25),
+                        borderRadius: 40,
+                        borderStyle: "solid",
+                        borderColor: "#000",
+                        borderWidth: responsiveWidth(0.3),
+                    }}
+                    onPress={()=>navigation.navigate('Camera')}
+                        className="py-3 bg-slate-200 items-center justify-center "   >
+                        <Text
+                            className="text-xl font-bold text-center text-gray-700 " style={{
+                                fontSize: responsiveFontSize(2.5),
+                                fontWeight: "500",
+                                fontFamily: "Dosis-Medium",
+                                color: "#848383",
+                                textAlign: "center",
+                                width: responsiveWidth(183),
+                                height: responsiveHeight(2)
+                            }}
+                            
+                        >
+                            Mark Attendence
+                        </Text>
 
-      <View className="px-4 space-y-3">
-        <View className="flex-row justify-between items-center">
-          <Text className={`${colors.heading} text-bold text-xl`}>
-            Recent Trips
-          </Text>
-          <TouchableOpacity 
-           onPress={()=> navigation.navigate('AddTrip')}  
-          className="p-2 bg-white border border-gray-200 rounded-full">
-            <Text className={`${colors.heading}` } >Add Trip</Text>
-          </TouchableOpacity>
+                    </TouchableOpacity>
+                    <View style={{
+                        marginLeft: responsiveWidth(45),
+                        marginTop: responsiveHeight(4)
+                    }}>
+                        <Image source={require('../assets/Rectangle30.png')} />
+                    </View>
+                    <Text style={{
+                        fontSize: responsiveFontSize(2),
+                        fontWeight: "500",
+                        fontFamily: "Karla-Medium",
+                        color: "#818187",
+                        textAlign: "left",
+                        marginLeft: responsiveWidth(42),
+                        marginTop: responsiveHeight(5)
+                    }}>Unmarked</Text>
+                    <TouchableOpacity style={{
+                        width: responsiveWidth(40),
+                        height: responsiveHeight(7),
+                        marginTop: responsiveHeight(4.5),
+                        marginLeft: responsiveWidth(30),
+                        marginBottom:responsiveHeight(10),
+                    }}
+                        className="py-3 bg-orange-500 rounded-full items-center justify-center "    
+                        onPress={()=>navigation.navigate('Camera')}
+                        >
+                        <Text
+                            className="text-xl font-bold text-center text-gray-700 " style={{
+                                borderRadius: 30,
+                                fontSize: responsiveFontSize(3),
+                                fontWeight: "700",
+                                color: "#fff",
+                            }}
+                        >
+                            Login
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+
         </View>
-        <View style={{height: 600}}>
-          <FlatList className="mx-1 "
-            data={items}
-            ListEmptyComponent={<EmptyList meddage={"You haven't recorded any trips yet"}/>}
-            columnWrapperStyle={{
-              justifyContent:"space-between"
-            }}
-            keyExtractor={item=>item.id}
-            numColumns={2}
-            showsVerticalScrollIndicator={false}
-            renderItem={({item}) => {
-              return (
-                <TouchableOpacity onPress={()=>navigation.navigate('AddExpensesScreen')} className="bg-white p-3  rounded-xl  mb-3 shadow-sm">
-                  <View>
-                    <Image source={randomImage()} className="h-36 w-36  mb-2"/>
-                    <Text className={`${colors.heading} font-bold`}>{item.place}</Text>
-                    <Text className={`${colors.heading} text-xs`}>{item.country}</Text>
-                  </View>
-                </TouchableOpacity>
-              );
-            }}
-          />
-        </View>
-      </View>
     </ScreenWrapper>
   );
 }
