@@ -2,7 +2,9 @@ import { Image, StyleSheet, Text, View, TextInput,Switch,LinearGradient,Pressabl
 import { responsiveFontSize, responsiveWidth, responsiveHeight } from 'react-native-responsive-dimensions';
 import { themeColors } from '../theme';
 import { useState } from 'react'
+import { useNavigation } from '@react-navigation/native';
 const LoginScreen = () => {
+  const navigation=useNavigation();
   const [checked, setChecked] = useState(false);
   return (
     <View className="justify-center items-center bg-orange-500" >
@@ -49,7 +51,9 @@ const LoginScreen = () => {
         
       </View>
       <TouchableOpacity style={{ width: responsiveWidth(40), height: responsiveHeight(7) ,marginTop:responsiveHeight(12),marginLeft:responsiveWidth(20),justifyContent:'center',alignItems:'center'}}
-      className="py-3 bg-orange-500 rounded-full items-center justify-center"  >
+      className="py-3 bg-orange-500 rounded-full items-center justify-center" 
+      onPress={()=>navigation.navigate('Home')}
+      >
       <Text
           className="text-xl font-bold text-center text-gray-700 " style={{
               borderRadius: 30,

@@ -13,7 +13,7 @@ export default function Appnavigation() {
   return (
     <NavigationContainer>
 
-      <Stack.Navigator initialRouteName="Home" screenOptions={{animationEnabled:true}}>
+      <Stack.Navigator initialRouteName="SplashScreen" screenOptions={{animationEnabled:true}}>
         <Stack.Screen options={{headerShown:false}} name="Home" component={HomeScreen} />
         <Stack.Screen options={{headerShown:false}} name="SplashScreen" component={SplashScreen} />
         <Stack.Screen options={{headerShown:false}} name="Login" component={LoginScreen} />

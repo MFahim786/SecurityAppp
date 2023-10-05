@@ -81,7 +81,7 @@ export default function HomeScreen() {
                         marginBottom:responsiveHeight(10),
                     }}
                         className="py-3 bg-orange-500 rounded-full items-center justify-center "    
-                        onPress={()=>navigation.navigate('Camera')}
+                        onPress={()=>navigation.navigate('Login')}
                         >
                         <Text
                             className="text-xl font-bold text-center text-gray-700 " style={{
@@ -91,7 +91,7 @@ export default function HomeScreen() {
                                 color: "#fff",
                             }}
                         >
-                            Login
+                            Signout
                         </Text>
                     </TouchableOpacity>
                 </View>
